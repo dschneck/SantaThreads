@@ -50,14 +50,30 @@ public class Elf implements Runnable {
 				// trouble.
 				if (rand.nextDouble() < 0.01) {
 					state = ElfState.TROUBLE;
+					if (scenario.troubledElves.size() < 3) {
+						scenario.troubledElves.add(this);
+					}
 				}
 				break;
 			}
 			case TROUBLE:
 				// FIXME: if possible, move to Santa's door
+				if (scenario.troubledElves.size() == 3 && scenario.troubledElves.contains(this)) {
+					state = ElfState.AT_SANTAS_DOOR;
+				}
+				//i
 				break;
 			case AT_SANTAS_DOOR:
 				// FIXME: if feasible, wake up Santa
+				int count = 0;
+				
+				for (Elf elf: scenario.troubledElves) {
+					if (elf.getState() == ElfState.AT_SANTAS_DOOR)
+						count++;
+				}
+
+				if (count == 3) scenario.santa.setState(Santa.SantaState.WOKEN_UP_BY_ELVES);
+
 				break;
 			}
 		}

@@ -8,6 +8,8 @@ public class SantaScenario {
 	public Santa santa;
 	public List<Elf> elves;
 	public List<Reindeer> reindeers;
+
+	public List<Elf> troubledElves;
 	public boolean isDecember;
 	
 	public static void main(String args[]) {
@@ -20,6 +22,7 @@ public class SantaScenario {
 		th.start();
 		// The elves: in this case: 10
 		scenario.elves = new ArrayList<>();
+		scenario.troubledElves = new ArrayList<>();
 		for(int i = 0; i != 10; i++) {
 			Elf elf = new Elf(i+1, scenario);
 			scenario.elves.add(elf);

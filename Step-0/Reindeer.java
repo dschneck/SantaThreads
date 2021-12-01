@@ -8,6 +8,14 @@ public class Reindeer implements Runnable {
 	private SantaScenario scenario;
 	private Random rand = new Random();
 
+	public void setState(ReindeerState state) {
+		this.state = state;
+	}
+
+	public ReindeerState getState() {
+		return state;
+	}
+
 	/**
 	 * The number associated with the reindeer
 	 */
